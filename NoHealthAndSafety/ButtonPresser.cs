@@ -18,7 +18,7 @@ namespace NoHealthAndSafety
             }
         }
 
-        void Awake()
+        void Start()
         {
             StartCoroutine(clickIt());
         }

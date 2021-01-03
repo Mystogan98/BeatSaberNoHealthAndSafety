@@ -1,10 +1,6 @@
 ﻿using IPA;
-using IPA.Config;
-using IPA.Loader;
-using IPA.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using IPALogger = IPA.Logging.Logger;
 
 namespace NoHealthAndSafety
@@ -12,24 +8,21 @@ namespace NoHealthAndSafety
     [Plugin(RuntimeOptions.SingleStartInit)]
     public class Plugin
     {
-        public static string PluginName => "No Health and Safety";
+        public static string PluginName => "NoHealthAndSafety";
 
         [Init]
-        public void Init(IPALogger logger, [Config.Prefer("json")] IConfigProvider cfgProvider)
-        {
-            Logger.log = logger;
-            SceneManager.activeSceneChanged += OnActiveSceneChanged;
-        }
+        public void Init(IPALogger logger) { Logger.log = logger; }
 
         [OnStart]
         public void OnApplicationStart()
         {
+            SceneManager.activeSceneChanged += OnActiveSceneChanged;
         }
 
         [OnExit]
         public void OnApplicationQuit()
         {
-
+            SceneManager.activeSceneChanged -= OnActiveSceneChanged;
         }
 
         public void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
