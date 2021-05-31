@@ -6,10 +6,10 @@ namespace NoHealthAndSafety
 {
     class ButtonPresser : MonoBehaviour
     {
-        private IEnumerator clickIt()
+        private static IEnumerator ClickIt()
         {
             yield return new WaitForSeconds(.3f);
-            foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
+            foreach (var button in Resources.FindObjectsOfTypeAll<Button>())
             {
                 if (button.name == "Continue")
                 {
@@ -20,7 +20,7 @@ namespace NoHealthAndSafety
 
         void Start()
         {
-            StartCoroutine(clickIt());
+            StartCoroutine(ClickIt());
         }
     }
 }

@@ -11,7 +11,10 @@ namespace NoHealthAndSafety
         public static string PluginName => "NoHealthAndSafety";
 
         [Init]
-        public void Init(IPALogger logger) { Logger.log = logger; }
+        public void Init(IPALogger logger)
+        {
+            Logger.LOG = logger;
+        }
 
         [OnStart]
         public void OnApplicationStart()
@@ -25,13 +28,12 @@ namespace NoHealthAndSafety
             SceneManager.activeSceneChanged -= OnActiveSceneChanged;
         }
 
-        public void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
+        private static void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
         {
             if (nextScene.name == "HealthWarning")
             {
                 new GameObject("ButtonPresser").AddComponent<ButtonPresser>();
             }
         }
-
     }
 }
