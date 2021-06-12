@@ -13,7 +13,7 @@ namespace NoHealthAndSafety
         [Init]
         public void Init(IPALogger logger)
         {
-            Logger.LOG = logger;
+            Logger.Log = logger;
         }
 
         [OnStart]

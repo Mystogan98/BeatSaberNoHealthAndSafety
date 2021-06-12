@@ -4,6 +4,6 @@ namespace NoHealthAndSafety
 {
     internal static class Logger
     {
-        public static IPALogger LOG { get; set; }
+        public static IPALogger Log { get; set; }
     }
 }
