@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,21 +7,18 @@ namespace NoHealthAndSafety
 {
     class ButtonPresser : MonoBehaviour
     {
-        private IEnumerator clickIt()
+        private static IEnumerator ClickIt()
         {
-            yield return new WaitForSeconds(.3f);
-            foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
+            yield return new WaitForSeconds(.2f);
+            foreach (var button in Resources.FindObjectsOfTypeAll<Button>().Where(x => x.name == "Continue"))
             {
-                if (button.name == "Continue")
-                {
-                    button.onClick.Invoke();
-                }
+                button.onClick.Invoke();
             }
         }
 
         void Start()
         {
-            StartCoroutine(clickIt());
+            StartCoroutine(ClickIt());
         }
     }
 }
